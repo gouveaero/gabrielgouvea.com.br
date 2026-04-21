@@ -406,37 +406,9 @@ function initJourney() {
   }
 }
 
-// ── Number counters ──
-function initNumbers() {
-  document.querySelectorAll('.number-card').forEach((card) => {
-    const val = parseFloat(card.dataset.value)
-    const decimals = parseInt(card.dataset.decimals || '0')
-    const el = card.querySelector('.number-val')
-    if (!el) return
-    const obj = { n: 0 }
-
-    ScrollTrigger.create({
-      trigger: card,
-      start: 'top 80%',
-      once: true,
-      onEnter: () => {
-        gsap.to(obj, {
-          n: val,
-          duration: 2,
-          ease: 'power2.out',
-          onUpdate: () => {
-            el.textContent = decimals > 0 ? obj.n.toFixed(decimals) : Math.floor(obj.n).toString()
-          },
-        })
-      },
-    })
-  })
-}
-
 // ── Section reveals ──
 function initReveals() {
   const selectors = [
-    '#numbers .section-tag', '#numbers .section-title',
     '#services .section-tag', '#services .section-title',
     '#services .service-card', '#services .services-bridge',
     '#contact .section-tag', '#contact .section-title', '#contact .contact-sub', '#contact .contact-ctas',
@@ -477,16 +449,6 @@ function initReveals() {
     })
   }
 
-  // Numbers section — stagger cards
-  const numberCards = document.querySelectorAll('.number-card')
-  if (numberCards.length) {
-    gsap.from(numberCards, {
-      opacity: 0, y: 50, scale: 0.96,
-      duration: 0.7, stagger: 0.12, ease: 'power3.out',
-      scrollTrigger: { trigger: '#numbers', start: 'top 80%', once: true },
-    })
-  }
-
   // Dual path — slide from sides
   const dualLeft = document.querySelector('.dual-entrepreneurs')
   const dualRight = document.querySelector('.dual-corporate')
@@ -510,6 +472,5 @@ window.addEventListener('DOMContentLoaded', () => {
   initAbout()
   initOrbitalArcs()
   initJourney()
-  initNumbers()
   initReveals()
 })
