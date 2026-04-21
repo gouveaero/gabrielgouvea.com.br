@@ -40,11 +40,11 @@ const MILESTONES = [
   {
     year: '2024–hoje',
     title: 'Exos Marketing — Cofundador',
-    desc: 'Responsável por tráfego pago, dados, operações e integrações com IA. Mais de R$2 milhões em mídia gerenciada. Automações, dashboards e sistemas de IA que multiplicam a capacidade das equipes.',
+    desc: 'Responsável por tráfego pago, dados, operações e integrações com IA. Mais de R$3 milhões em mídia gerenciada. Automações, dashboards e sistemas de IA que multiplicam a capacidade das equipes.',
     tag: 'Empreendedorismo & IA',
   },
   {
-    year: '2024–hoje',
+    year: '2026',
     title: 'Vhoe.co — Fundador',
     desc: 'Marca brasileira de vestuário premium inspirada em aviação. Mais de 140K seguidores no Instagram construídos via conteúdo de IA. Produto, marca e canal de distribuição construídos do zero.',
     tag: 'Brand Building',
@@ -137,7 +137,10 @@ function initParticles(canvasId) {
   const canvas = document.getElementById(canvasId)
   if (!canvas) return
   const ctx = canvas.getContext('2d')
+  const isHero = canvasId === 'particles-canvas'
   let W, H, particles, stars
+  let comets = []
+  let nextCometAt = isHero ? Date.now() + 8000 + Math.random() * 6000 : Infinity
 
   function resize() {
     W = canvas.width = canvas.offsetWidth
@@ -165,6 +168,17 @@ function initParticles(canvasId) {
     }))
   }
 
+  function spawnComet() {
+    comets.push({
+      x: Math.random() * W * 0.7 + W * 0.3,
+      y: Math.random() * H * 0.35,
+      vx: -(Math.random() * 4 + 8),
+      vy: Math.random() * 3 + 4,
+      opacity: Math.random() * 0.3 + 0.55,
+    })
+    nextCometAt = Date.now() + 8000 + Math.random() * 6000
+  }
+
   function draw() {
     ctx.clearRect(0, 0, W, H)
     // Static stars
@@ -174,6 +188,25 @@ function initParticles(canvasId) {
       ctx.fillStyle = `rgba(255,255,255,${s.a})`
       ctx.fill()
     })
+    // Shooting stars
+    for (let i = comets.length - 1; i >= 0; i--) {
+      const c = comets[i]
+      ctx.save()
+      const grad = ctx.createLinearGradient(c.x, c.y, c.x - c.vx * 8, c.y - c.vy * 8)
+      grad.addColorStop(0, `rgba(255,255,255,${c.opacity})`)
+      grad.addColorStop(1, 'rgba(255,255,255,0)')
+      ctx.strokeStyle = grad
+      ctx.lineWidth = 1.2
+      ctx.beginPath()
+      ctx.moveTo(c.x, c.y)
+      ctx.lineTo(c.x - c.vx * 8, c.y - c.vy * 8)
+      ctx.stroke()
+      ctx.restore()
+      c.x += c.vx
+      c.y += c.vy
+      c.opacity -= 0.018
+      if (c.opacity <= 0 || c.x < -100 || c.y > H + 50) comets.splice(i, 1)
+    }
     // Moving cyan particles
     particles.forEach((p) => {
       p.x += p.vx
@@ -187,6 +220,7 @@ function initParticles(canvasId) {
       ctx.fillStyle = `rgba(0, 194, 255, ${p.a})`
       ctx.fill()
     })
+    if (isHero && Date.now() >= nextCometAt) spawnComet()
   }
 
   resize()
@@ -222,6 +256,10 @@ function initHero() {
       const preEl = document.getElementById('hero-pre')
       if (preEl) textScramble(preEl, 900)
     }, 0.5)
+    .add(() => {
+      const wordEl = document.getElementById('hero-word')
+      if (wordEl) textScramble(wordEl, 1400)
+    }, 1.6)
 }
 
 // ── About section reveals ──
@@ -345,10 +383,10 @@ function initJourney() {
     const mobileList = document.createElement('div')
     mobileList.className = 'journey-mobile-list'
     mobileList.style.cssText = 'display:flex;flex-direction:column;gap:16px;margin-top:16px;'
+    const mobileCards = []
     MILESTONES.forEach((m) => {
       const item = document.createElement('div')
       item.className = 'journey-card' + (m.upcoming ? ' upcoming' : '')
-      item.style.cssText = 'opacity:1;transform:none;'
       item.innerHTML = `
         <div class="journey-card-year">${m.year}</div>
         <h3 class="journey-card-title">${m.title}</h3>
@@ -356,8 +394,18 @@ function initJourney() {
         <span class="journey-card-tag">${m.tag}</span>
       `
       mobileList.appendChild(item)
+      mobileCards.push(item)
     })
     document.querySelector('.journey-card-col').appendChild(mobileList)
+    mobileCards.forEach((el) => {
+      gsap.from(el, {
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+      })
+    })
   }
 }
 
@@ -449,14 +497,14 @@ function initReveals() {
   const dualRight = document.querySelector('.dual-corporate')
   if (dualLeft) {
     gsap.from(dualLeft, {
-      opacity: 0, x: -50, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: '#dual-path', start: 'top 80%', once: true },
+      opacity: 0, y: 30, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: '#dual-path', start: 'top 90%', once: true },
     })
   }
   if (dualRight) {
     gsap.from(dualRight, {
-      opacity: 0, x: 50, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: '#dual-path', start: 'top 80%', once: true },
+      opacity: 0, y: 30, duration: 0.8, ease: 'power3.out', delay: 0.12,
+      scrollTrigger: { trigger: '#dual-path', start: 'top 90%', once: true },
     })
   }
 }

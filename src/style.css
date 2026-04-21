@@ -18,7 +18,7 @@
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; max-width: 100%; }
 body {
   background: var(--bg);
   color: var(--text);
@@ -240,7 +240,7 @@ ul { list-style: none; }
 }
 .hero-title {
   font-family: var(--font-head);
-  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-size: clamp(3rem, 7vw, 5.5rem);
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
@@ -298,6 +298,31 @@ ul { list-style: none; }
 @keyframes scrollPulse {
   0%, 100% { opacity: 0.3; transform: scaleY(1); }
   50% { opacity: 1; transform: scaleY(1.2); }
+}
+@media (max-width: 600px) {
+  .hero-scroll-hint { display: none; }
+}
+
+/* ── Hero nebula glows ── */
+#hero::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 40% at 20% 65%, rgba(0,194,255,0.07) 0%, transparent 70%);
+  animation: nebula1 24s ease-in-out infinite alternate;
+}
+#hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 50% 35% at 80% 28%, rgba(123,97,255,0.06) 0%, transparent 70%);
+  animation: nebula2 30s ease-in-out infinite alternate;
+}
+@keyframes nebula1 {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.15) translate(2%, 3%); }
+}
+@keyframes nebula2 {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.2) translate(-3%, 2%); }
 }
 
 /* ── ABOUT ── */
@@ -782,14 +807,16 @@ ul { list-style: none; }
   transform: translateY(40px);
 }
 
-/* ── Nav logo SVG ── */
-.nav-logo-svg {
+/* ── Nav logo text ── */
+.nav-logo-text {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
   color: var(--text);
   transition: color var(--transition);
 }
-.nav-logo:hover .nav-logo-svg {
-  color: var(--accent);
-}
+.nav-logo:hover .nav-logo-text { color: var(--accent); }
 
 /* ── Orbital arcs (hero background) ── */
 .orbital-arcs {
