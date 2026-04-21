@@ -1,6 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
   <rect width="64" height="64" rx="14" fill="#080810"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle"
-        font-family="system-ui,sans-serif" font-weight="700" font-size="28"
-        fill="#00c2ff" letter-spacing="-1">GG</text>
+  <path d="M6 13 L20 13 L20 18 M6 13 L6 51 L20 51 L20 40 L13 40 L13 34 L20 34" stroke="#00c2ff" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M58 13 L44 13 L44 18 M58 13 L58 51 L44 51 L44 40 L51 40 L51 34 L44 34" stroke="#00c2ff" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/>
 </svg>
