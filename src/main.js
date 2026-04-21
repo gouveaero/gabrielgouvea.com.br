@@ -245,21 +245,18 @@ function initHero() {
   const ctas = document.querySelector('.hero-ctas')
   const scrollHint = document.querySelector('.hero-scroll-hint')
 
+  const preEl = document.getElementById('hero-pre')
+  const wordEl = document.getElementById('hero-word')
+
   const tl = gsap.timeline({ delay: 0.2 })
   tl.to(content, { opacity: 1, duration: 0 })
-    .to(pre, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.1)
+    .add(() => { if (preEl) textScramble(preEl, 1000) }, 0)
+    .to(pre, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.05)
     .to(lines, { opacity: 1, y: 0, duration: 0.9, stagger: 0.12, ease: 'power3.out' }, 0.35)
-    .to(sub, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.8)
-    .to(ctas, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 1.0)
-    .to(scrollHint, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 1.4)
-    .add(() => {
-      const preEl = document.getElementById('hero-pre')
-      if (preEl) textScramble(preEl, 900)
-    }, 0.5)
-    .add(() => {
-      const wordEl = document.getElementById('hero-word')
-      if (wordEl) textScramble(wordEl, 1400)
-    }, 1.6)
+    .add(() => { if (wordEl) textScramble(wordEl, 1400) }, 0.4)
+    .to(sub, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.9)
+    .to(ctas, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 1.1)
+    .to(scrollHint, { opacity: 1, duration: 0.5, ease: 'power2.out' }, 1.5)
 }
 
 // ── About section reveals ──
@@ -440,10 +437,8 @@ function initNumbers() {
 function initReveals() {
   const selectors = [
     '#numbers .section-tag', '#numbers .section-title',
-    '#numbers .number-card',
     '#services .section-tag', '#services .section-title',
     '#services .service-card', '#services .services-bridge',
-    '#dual-path .dual-card',
     '#contact .section-tag', '#contact .section-title', '#contact .contact-sub', '#contact .contact-ctas',
   ]
 
@@ -470,13 +465,13 @@ function initReveals() {
     })
   }
 
-  // About section clip-path reveal
+  // About section reveal
   const aboutSection = document.getElementById('about')
   if (aboutSection) {
     gsap.from(aboutSection, {
-      clipPath: 'inset(6% 0 0 0)',
       opacity: 0,
-      duration: 1.0,
+      y: 24,
+      duration: 0.8,
       ease: 'power3.out',
       scrollTrigger: { trigger: aboutSection, start: 'top 90%', once: true },
     })
