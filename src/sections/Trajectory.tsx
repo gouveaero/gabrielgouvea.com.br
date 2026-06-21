@@ -1,11 +1,63 @@
 import { useEffect, useRef, useState } from "react";
 import { useI18n } from "../i18n/i18n";
+import type { Lang } from "../i18n/dict";
 import { useReveal } from "../lib/useReveal";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "../lib/gsap";
 import SectionHead from "../components/SectionHead";
 
-// trajectory images, one per milestone (filled in when Gabriel sends them)
-const IMAGES: (string | null)[] = [null, null, null, null, null, null, null, null];
+// Per-milestone media. Photos are graded to near-monochrome (see .duo) and
+// reveal full colour on hover. Brand marks (Vhoe, HEG) and the AI motif are
+// rendered as marks, not forced into photo frames. Captions are bilingual.
+type Cap = { en: string; pt: string };
+type Shot = { src: string; cap: Cap; pos?: string };
+type Media =
+  | { kind: "photo"; images: Shot[] }
+  | { kind: "logo"; src: string; cap: Cap; light?: boolean }
+  | { kind: "icon"; cap: Cap };
+
+const MEDIA: (Media | null)[] = [
+  {
+    kind: "photo",
+    images: [
+      { src: "/trajectory/cefet-1.jpg", cap: { en: "Visit to the Brazilian nuclear submarine shipyard", pt: "Visita ao estaleiro do submarino nuclear brasileiro" } },
+      { src: "/trajectory/cefet-2.jpg", cap: { en: "Presenting SolMar research at a conference", pt: "Apresentando a pesquisa do SolMar em congresso" } },
+      { src: "/trajectory/cefet-3.jpg", cap: { en: "Coordinating the SolMar competition, CEFET/RJ", pt: "Coordenação da competição SolMar, CEFET/RJ" } },
+      { src: "/trajectory/cefet-4.jpg", cap: { en: "SolMar competition at CEFET/RJ", pt: "Competição SolMar no CEFET/RJ" } },
+    ],
+  },
+  {
+    kind: "photo",
+    images: [{ src: "/trajectory/farias-1.jpg", cap: { en: "Preparation years for the military academies, Fortaleza", pt: "Anos de preparação para as academias militares, Fortaleza" } }],
+  },
+  {
+    kind: "photo",
+    images: [
+      { src: "/trajectory/ufmg-1.jpg", cap: { en: "Pitching a startup in an entrepreneurship class, UFMG", pt: "Pitch de startup numa disciplina de empreendedorismo, UFMG" } },
+      { src: "/trajectory/ufmg-2.jpg", cap: { en: "Aerospace Engineering reception, UFMG", pt: "Recepção do curso de Engenharia Aeroespacial, UFMG" } },
+    ],
+  },
+  {
+    kind: "photo",
+    images: [
+      { src: "/trajectory/lasc-1.jpg", cap: { en: "Team Fênix, 1st place in the 1 km class, with the trophies", pt: "Equipe Fênix, 1º lugar na categoria 1 km, com os troféus" } },
+      { src: "/trajectory/lasc-2.jpg", cap: { en: "Team Fênix at the LASC 2023 competition", pt: "Equipe Fênix na competição LASC 2023" } },
+      { src: "/trajectory/lasc-3.jpg", cap: { en: "Recovery of rocket Guará after the flight", pt: "Recuperação do foguete Guará após o voo" } },
+      { src: "/trajectory/lasc-4.jpg", cap: { en: "Final assembly of rocket Guará", pt: "Montagem final do foguete Guará" } },
+    ],
+  },
+  {
+    kind: "photo",
+    images: [
+      { src: "/trajectory/exos-1.jpg", pos: "center 20%", cap: { en: "US$1M in revenue with Exos", pt: "US$1M em faturamento com a Exos" } },
+      { src: "/trajectory/exos-2.jpg", pos: "center 22%", cap: { en: "R$100k in 7 days, alongside Erico Rocha", pt: "R$100k em 7 dias, ao lado de Erico Rocha" } },
+      { src: "/trajectory/exos-3.jpg", pos: "center 16%", cap: { en: "With Pedro Sobral and Priscila Zilo", pt: "Com Pedro Sobral e Priscila Zilo" } },
+      { src: "/trajectory/exos-4.jpg", pos: "center 15%", cap: { en: "R$1M in 12 months, alongside Leandro Ladeira", pt: "R$1M em 12 meses, ao lado de Leandro Ladeira" } },
+    ],
+  },
+  { kind: "logo", src: "/trajectory/vhoe.png", cap: { en: "Vhoe, premium aviation apparel brand", pt: "Vhoe, marca premium de vestuário de aviação" } },
+  { kind: "icon", cap: { en: "Local AI, autonomous agents and proprietary tooling", pt: "IA local, agentes autônomos e ferramentas proprietárias" } },
+  { kind: "logo", src: "/trajectory/heg.png", light: true, cap: { en: "International Business Management, Geneva", pt: "International Business Management, Genebra" } },
+];
 
 function RocketIcon() {
   return (
@@ -28,8 +80,153 @@ function RocketIcon() {
   );
 }
 
+// neural motif for the "building with AI" milestone (no photo)
+function AIMotif() {
+  const nodes = [
+    [30, 28],
+    [78, 20],
+    [120, 44],
+    [54, 60],
+    [98, 76],
+    [34, 92],
+    [128, 100],
+    [76, 110],
+  ];
+  const links: [number, number][] = [
+    [0, 1],
+    [1, 2],
+    [0, 3],
+    [3, 4],
+    [1, 4],
+    [3, 5],
+    [4, 6],
+    [4, 7],
+    [5, 7],
+    [2, 6],
+  ];
+  return (
+    <svg viewBox="0 0 158 132" className="h-2/3 w-2/3" fill="none" aria-hidden="true">
+      {links.map(([a, b], i) => (
+        <line key={i} x1={nodes[a][0]} y1={nodes[a][1]} x2={nodes[b][0]} y2={nodes[b][1]} stroke="#CDF564" strokeOpacity="0.32" strokeWidth="1" />
+      ))}
+      {nodes.map(([x, y], i) => (
+        <circle key={i} cx={x} cy={y} r={i % 3 === 0 ? 3.4 : 2.2} fill="#CDF564" fillOpacity={i % 3 === 0 ? 0.95 : 0.55} />
+      ))}
+    </svg>
+  );
+}
+
+function MediaFrame({ media, lang }: { media: Media | null; lang: Lang; }) {
+  const [shot, setShot] = useState(0);
+  // reset to the first image whenever the media (milestone) changes
+  const key = media && media.kind === "photo" ? media.images[0]?.src : media && media.kind === "logo" ? media.src : "icon";
+  useEffect(() => {
+    setShot(0);
+  }, [key]);
+
+  if (!media) {
+    return <div className="aspect-[4/3] w-full rounded-2xl border border-line bg-ink-2/40" />;
+  }
+
+  if (media.kind === "photo") {
+    const cur = media.images[Math.min(shot, media.images.length - 1)];
+    return (
+      <div className="w-full">
+        <figure className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-line bg-ink-2/40">
+          {/* blurred fill of the same image so nothing is cropped, frame still feels full */}
+          <img src={cur.src} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-2xl" loading="lazy" />
+          <img src={cur.src} alt={cur.cap[lang]} className="duo absolute inset-0 h-full w-full object-contain" loading="lazy" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent" />
+          <figcaption className="absolute inset-x-0 bottom-0 p-4">
+            <span className="font-mono text-[11px] leading-snug tracking-[0.02em] text-paper-dim">{cur.cap[lang]}</span>
+          </figcaption>
+        </figure>
+        {media.images.length > 1 && (
+          <div className="mt-3 flex gap-2.5">
+            {media.images.map((im, i) => (
+              <button
+                key={im.src}
+                type="button"
+                onClick={() => setShot(i)}
+                aria-label={im.cap[lang]}
+                aria-pressed={i === shot}
+                className={`relative h-12 w-16 shrink-0 overflow-hidden rounded-md border transition-all duration-300 ${
+                  i === shot ? "border-lime opacity-100" : "border-line opacity-50 hover:opacity-90"
+                }`}
+              >
+                <img src={im.src} alt="" className="h-full w-full object-cover" loading="lazy" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (media.kind === "logo") {
+    return (
+      <div className="w-full">
+        <div className="group relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-line bg-ink-2/40">
+          {media.light ? (
+            <div className="rounded-xl bg-paper px-10 py-8">
+              <img src={media.src} alt={media.cap[lang]} className="h-24 w-auto object-contain" loading="lazy" />
+            </div>
+          ) : (
+            <img src={media.src} alt={media.cap[lang]} className="w-[66%] max-w-[340px] object-contain opacity-90" loading="lazy" />
+          )}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+          <span className="absolute inset-x-0 bottom-0 p-4 font-mono text-[11px] leading-snug tracking-[0.02em] text-paper-dim">{media.cap[lang]}</span>
+        </div>
+      </div>
+    );
+  }
+
+  // icon
+  return (
+    <div className="w-full">
+      <div className="relative flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-2xl border border-line bg-ink-2/40">
+        <AIMotif />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
+        <span className="absolute inset-x-0 bottom-0 p-4 font-mono text-[11px] leading-snug tracking-[0.02em] text-paper-dim">{media.cap[lang]}</span>
+      </div>
+    </div>
+  );
+}
+
+// compact media for the mobile timeline
+function MiniMedia({ media, lang }: { media: Media | null; lang: Lang }) {
+  if (!media) return null;
+  if (media.kind === "photo") {
+    const im = media.images[0];
+    return (
+      <div className="group relative mt-3 h-44 overflow-hidden rounded-lg border border-line bg-ink-2/40">
+        <img src={im.src} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-2xl" loading="lazy" />
+        <img src={im.src} alt={im.cap[lang]} className="duo absolute inset-0 h-full w-full object-contain" loading="lazy" />
+      </div>
+    );
+  }
+  if (media.kind === "logo") {
+    return (
+      <div className="mt-3 flex h-28 items-center justify-center overflow-hidden rounded-lg border border-line bg-ink-2/40">
+        {media.light ? (
+          <div className="rounded-lg bg-paper px-5 py-3">
+            <img src={media.src} alt={media.cap[lang]} className="h-9 w-auto object-contain" loading="lazy" />
+          </div>
+        ) : (
+          <img src={media.src} alt={media.cap[lang]} className="h-12 w-auto object-contain opacity-90" loading="lazy" />
+        )}
+      </div>
+    );
+  }
+  return (
+    <div className="mt-3 flex h-28 items-center justify-center rounded-lg border border-line bg-ink-2/40">
+      <AIMotif />
+    </div>
+  );
+}
+
 export default function Trajectory() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const root = useRef<HTMLElement | null>(null);
   const scrolly = useRef<HTMLDivElement | null>(null);
   const rocketRef = useRef<HTMLDivElement | null>(null);
@@ -63,8 +260,6 @@ export default function Trajectory() {
   }, [N]);
 
   const m = ms[active];
-  const img = IMAGES[active];
-  // inline styles override the CSS reduced-motion rule, so gate the crossfade here too
   const fade = prefersReducedMotion() ? undefined : { animation: "fadeUp 0.5s ease" };
 
   return (
@@ -79,7 +274,7 @@ export default function Trajectory() {
         </p>
       </div>
 
-      {/* desktop scrollytelling: rocket climbs the line, content + image crossfade */}
+      {/* desktop scrollytelling: rocket climbs the line, content + media crossfade */}
       <div ref={scrolly} className="relative hidden lg:block" style={{ height: `${N * 46}vh` }}>
         <div className="sticky top-0 flex h-screen items-center">
           <div className="shell grid w-full grid-cols-[40px_1fr_1.1fr] items-center gap-10">
@@ -113,23 +308,15 @@ export default function Trajectory() {
               <p className="mt-3 max-w-md text-[1.02rem] leading-relaxed text-paper-dim text-pretty">{m.desc}</p>
             </div>
 
-            {/* image frame (placeholder until images provided) */}
-            <div key={`i${active}`} style={fade} className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-ink-2/40">
-              {img ? (
-                <img src={img} alt={m.title} className="h-full w-full object-cover" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center">
-                  <span className="select-none font-display text-7xl font-semibold text-paper-faint/15">{m.year}</span>
-                </div>
-              )}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 to-transparent" />
-              <span className="absolute bottom-3 left-4 font-mono text-[10px] uppercase tracking-[0.16em] text-paper-faint">{m.tag}</span>
+            {/* media frame */}
+            <div key={`i${active}`} style={fade}>
+              <MediaFrame media={MEDIA[active]} lang={lang} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* mobile: simple stacked timeline */}
+      {/* mobile: stacked timeline with media */}
       <div className="shell pb-24 lg:hidden">
         <ol className="relative mt-12 space-y-10 border-l border-line pl-7">
           {ms.map((mm, i) => (
@@ -144,6 +331,7 @@ export default function Trajectory() {
               </div>
               <h3 className="mt-1 font-display text-lg font-semibold tracking-tight text-paper">{mm.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-paper-dim text-pretty">{mm.desc}</p>
+              <MiniMedia media={MEDIA[i]} lang={lang} />
             </li>
           ))}
         </ol>

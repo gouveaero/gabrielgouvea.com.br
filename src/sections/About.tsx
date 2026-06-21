@@ -65,10 +65,6 @@ export default function About() {
             <RT html={t.about.quote} as="span" />
           </blockquote>
 
-          <p data-reveal className="mt-5 font-mono text-[12px] uppercase tracking-[0.16em] text-paper-faint">
-            {t.about.tagline}
-          </p>
-
           <a
             href="https://www.linkedin.com/in/gabriel-aero"
             target="_blank"

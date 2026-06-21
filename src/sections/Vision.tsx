@@ -49,17 +49,25 @@ export default function Vision() {
     if (!show3d || prefersReducedMotion()) return;
     const wrap = robotWrap.current;
     if (!wrap) return;
-    let tx = 0,
-      ty = 0,
-      cx = 0,
+    let cx = 0,
       cy = 0,
       raf = 0;
+    let mx = window.innerWidth / 2,
+      my = window.innerHeight / 2;
     const onMove = (e: MouseEvent) => {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
+      mx = e.clientX;
+      my = e.clientY;
     };
     const tick = () => {
       raf = requestAnimationFrame(tick);
+      // origin = the robot's head on screen (it sits in the right column), so the
+      // look direction is computed relative to the robot, not the viewport centre.
+      const host = wrap.parentElement ?? wrap;
+      const r = host.getBoundingClientRect();
+      const ox = r.left + r.width * 0.5;
+      const oy = r.top + r.height * 0.34;
+      const tx = Math.max(-1, Math.min(1, (mx - ox) / (window.innerWidth * 0.42)));
+      const ty = Math.max(-1, Math.min(1, (my - oy) / (window.innerHeight * 0.42)));
       cx += (tx - cx) * 0.1;
       cy += (ty - cy) * 0.1;
       // subtle body parallax (kept small so the head turn reads)

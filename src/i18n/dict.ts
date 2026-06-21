@@ -34,7 +34,7 @@ export interface Content {
     portraitTag: string;
   };
   credentials: { label: string };
-  about: { kicker: string; headline: string; body: string; quote: string; tagline: string; photoCaption: string; linkLabel: string };
+  about: { kicker: string; headline: string; body: string; quote: string; photoCaption: string; linkLabel: string };
   path: {
     title: string;
     kicker: string;
@@ -72,23 +72,22 @@ const en: Content = {
     kicker: "About",
     headline: "Since I was a kid, aircraft were my <span class='lime'>benchmark for excellence.</span>",
     body:
-      "That passion took me to CEFET/RJ, where I paired a mechanical technician degree with scientific research, publishing at international conferences before I turned 20. Then came years of intense preparation and admissions to <strong>AFA, EsPCEx, EFOMM and ITA</strong>. The route changed, and it was the best thing that could have happened. In 2022 I began Aerospace Engineering at UFMG and, that same year, took my first steps in digital marketing. I learned that the engineer's mindset, <span class='hl'>systems, data and precision</span>, works in any domain.",
-    quote: "What drives me isn't a job title. <span class='lime'>It's the instinct to take on challenges and make something of them.</span>",
-    tagline: "Engineering doesn't lie. Neither does data.",
-    photoCaption: "Founder & operator · in conversation",
+      "That passion took me to CEFET/RJ, where I paired a mechanical technician degree with scientific research, publishing at international conferences before I turned 20. Then came years of intense preparation, with admissions to Brazil's most selective service academies, the <strong>Air Force Academy (AFA)</strong>, the <strong>Army's cadet school (EsPCEx)</strong> and the <strong>Merchant Marine officer school (EFOMM)</strong>, and to <strong>ITA</strong>, the country's top aerospace institute. In 2022 I was admitted to Aerospace Engineering at UFMG, one of Brazil's most competitive federal universities, the same year I took my first steps in entrepreneurship and digital marketing. I learned that the engineer's mindset, <span class='hl'>systems, data and precision</span>, works in any domain.",
+    quote: "What drives me is <span class='lime'>the instinct to take on challenges and make something new of them.</span>",
+    photoCaption: "Podcast conversation",
     linkLabel: "Full profile on LinkedIn",
   },
   path: {
     title: "The <span class='lime'>trajectory</span>",
     kicker: "engineering precision · business velocity",
     lede:
-      "A fighter pilot dream redirected into aerospace engineering. The same instinct now turns precision into a way of building companies and AI.",
+      "None of this came from giving up on a path. It came from connecting science, engineering and entrepreneurship into one way of building.",
     stages: ["LAUNCH", "ATMOSPHERE", "ORBIT", "BEYOND"],
     milestones: [
-      { year: "2016–19", tag: "CEFET/RJ", title: "Technical base", desc: "Mechanical technician with CNPq research, SolMar competition lead and a Pipeway (Oil & Gas) internship. Research published at international conferences before 20." },
-      { year: "2020–21", tag: "Farias Brito", title: "The route changed", desc: "Two years of intense prep. Admissions to AFA, EsPCEx, EFOMM and ITA. The plan broke, and it was the best thing that happened." },
-      { year: "2022", tag: "UFMG", title: "Aerospace Engineering", desc: "Started at UFMG and, the same year, took the first steps in digital marketing." },
-      { year: "2023", tag: "LASC", title: "Champion, 0.4 m off", desc: "Aerodynamics & structures on rocket Guará. 1 km class champion with a 999.6 m precision record, 0.4 m off target." },
+      { year: "2016–19", tag: "CEFET/RJ", title: "Technical base", desc: "Mechanical technician with CNPq research, SolMar competition lead and a Pipeway (Oil & Gas) internship." },
+      { year: "2020–21", tag: "Farias Brito", title: "Years at full intensity", desc: "Intense preparation in math, physics and chemistry, with admissions to AFA, EsPCEx, EFOMM and ITA." },
+      { year: "2022", tag: "UFMG", title: "Aerospace Engineering", desc: "Admitted to Aerospace Engineering at UFMG, one of Brazil's most competitive programs. The same year, my first steps in entrepreneurship and digital marketing." },
+      { year: "2023", tag: "LASC", title: "Champion, 0.4 m off", desc: "Member of the aerodynamics & structures subsystem, team Fênix. I actively built rocket Guará, champion in the 1 km class with a Brazilian record of 999.6 m, 0.4 m from target." },
       { year: "2024→", tag: "Exos", title: "Co-founder & CTO", desc: "Leading paid media, data and AI integrations across the agency. Turning launches into recurring revenue." },
       { year: "2026", tag: "Vhoe.co", title: "Founder", desc: "Premium aviation apparel brand. 140K+ Instagram followers built via AI content. Product, brand and channel from scratch." },
       { year: "2026", tag: "AI dev", title: "Building with AI", desc: "Sites, local image-generation systems, local LLMs, autonomous agents with Hermes, and proprietary marketing skills." },
@@ -96,8 +95,8 @@ const en: Content = {
     ],
   },
   services: {
-    title: "Where I can <span class='lime'>help</span>",
-    kicker: "what I do",
+    title: "My <span class='lime'>expertise</span>",
+    kicker: "where I'm strong",
     items: [
       { title: "Strategy & Paid Media", desc: "Launch funnels and paid media with predictable ROI. Google, Meta, TikTok and LinkedIn Ads at scale." },
       { title: "Applied AI", desc: "Automation, AI agents and system architecture that multiply a team's capacity. From prompt to end to end integration." },
@@ -111,12 +110,12 @@ const en: Content = {
     title: "The polymath is <span class='lime'>back.</span>",
     lede: "Now with a new interface.",
     paragraphs: [
-      "For a long time, extreme specialization looked like the best path. The more complex the problem, the more valuable it seemed to master a single front. AI changed the game.",
-      "Today the edge isn't only in knowing how to do something. It's in connecting ideas, asking good questions, using the right tools and turning vision into execution. Intelligence still matters. What changed was the cost of execution.",
-      "With AI, automation and tools like Claude Code and n8n, one person with good vision can build, test and ship what used to require whole teams.",
-      "AI gives back something that excessive specialization had taken away: the ability to build across many fronts and think like a modern polymath. AI doesn't replace people. It amplifies those who use it with intention.",
+      "For years, deep specialization looked like the only way to be valuable. The harder the problem, the more it paid to master a single front. AI changed that.",
+      "I don't treat AI as decoration. I use it to operate across many fronts at once, engineering, marketing, product and data, and ship what used to take a whole team.",
+      "The edge now isn't only knowing how to execute. It's connecting ideas, asking the right questions and turning vision into something real, fast.",
+      "That is how I work: as a builder who orchestrates many skills instead of guarding one. AI doesn't replace people, it amplifies the ones who use it with intention.",
     ],
-    close: "The advantage of the coming years isn't being the best at one thing. It's orchestrating many skills to build extraordinary things.",
+    close: "The advantage of the coming years isn't being the best at one thing. It's orchestrating many to build what matters.",
   },
   contact: {
     title: "Let's <span class='lime'>talk.</span>",
@@ -155,23 +154,22 @@ const pt: Content = {
     kicker: "Sobre",
     headline: "Desde criança, aviões foram meu <span class='lime'>referencial de excelência.</span>",
     body:
-      "Essa paixão me levou ao CEFET/RJ, onde uni o técnico em mecânica à pesquisa científica, com trabalhos publicados em conferências internacionais antes dos 20 anos. Vieram anos de preparação intensa e aprovações na <strong>AFA, EsPCEx, EFOMM e no ITA</strong>. A rota mudou, e foi a melhor coisa que aconteceu. Em 2022 entrei em Engenharia Aeroespacial na UFMG e, no mesmo ano, dei os primeiros passos no marketing digital. Descobri que a mentalidade de engenheiro, <span class='hl'>sistemas, dados e precisão</span>, funciona em qualquer domínio.",
-    quote: "O que me move não é uma profissão ou um cargo. <span class='lime'>É o instinto de pegar desafios e fazer algo com eles.</span>",
-    tagline: "A engenharia não mente. Os dados também não.",
-    photoCaption: "Founder & operador · em conversa",
+      "Essa paixão me levou ao CEFET/RJ, onde uni o técnico em mecânica à pesquisa científica, com trabalhos publicados em conferências internacionais antes dos 20 anos. Depois vieram anos de preparação intensa, com aprovações na <strong>Academia da Força Aérea (AFA)</strong>, na <strong>Escola Preparatória de Cadetes do Exército (EsPCEx)</strong>, na <strong>Escola de Formação de Oficiais da Marinha Mercante (EFOMM)</strong> e no <strong>ITA</strong>. Em 2022 fui aprovado em Engenharia Aeroespacial na UFMG, uma das universidades federais mais concorridas do Brasil, no mesmo ano em que dei os primeiros passos no empreendedorismo e no marketing digital. Descobri que a mentalidade de engenheiro, <span class='hl'>sistemas, dados e precisão</span>, funciona em qualquer domínio.",
+    quote: "O que me move é <span class='lime'>o instinto de pegar desafios e fazer algo novo com eles.</span>",
+    photoCaption: "Conversa em podcast",
     linkLabel: "Perfil completo no LinkedIn",
   },
   path: {
     title: "A <span class='lime'>trajetória</span>",
     kicker: "precisão de engenharia · velocidade de negócio",
     lede:
-      "Um sonho de piloto de caça redirecionado para a engenharia aeroespacial. O mesmo instinto agora transforma precisão num jeito de construir empresas e IA.",
+      "Nada disso veio de desistir de um caminho. Veio de conectar ciência, engenharia e empreendedorismo num só jeito de construir.",
     stages: ["LANÇAMENTO", "ATMOSFERA", "ÓRBITA", "ALÉM"],
     milestones: [
-      { year: "2016–19", tag: "CEFET/RJ", title: "Base técnica", desc: "Técnico em mecânica com pesquisa no CNPq, liderança no SolMar e estágio na Pipeway (Oil & Gas). Pesquisa publicada em conferências internacionais antes dos 20." },
-      { year: "2020–21", tag: "Farias Brito", title: "A rota mudou", desc: "Dois anos de preparação intensa. Aprovações na AFA, EsPCEx, EFOMM e no ITA. O plano quebrou, e foi a melhor coisa que aconteceu." },
-      { year: "2022", tag: "UFMG", title: "Engenharia Aeroespacial", desc: "Entrei na UFMG e, no mesmo ano, dei os primeiros passos no marketing digital." },
-      { year: "2023", tag: "LASC", title: "Campeão, desvio de 0,4 m", desc: "Aerodinâmica e estruturas no foguete Guará. Campeão na categoria 1 km com recorde de 999,6 m, 0,4 m do alvo." },
+      { year: "2016–19", tag: "CEFET/RJ", title: "Base técnica", desc: "Técnico em mecânica com pesquisa no CNPq, liderança no SolMar e estágio na Pipeway (Oil & Gas)." },
+      { year: "2020–21", tag: "Farias Brito", title: "Anos de alta intensidade", desc: "Preparação intensa em matemática, física e química, com aprovações na AFA, EsPCEx, EFOMM e no ITA." },
+      { year: "2022", tag: "UFMG", title: "Engenharia Aeroespacial", desc: "Aprovado em Engenharia Aeroespacial na UFMG, um dos cursos mais concorridos do Brasil. No mesmo ano, os primeiros passos no empreendedorismo e no marketing digital." },
+      { year: "2023", tag: "LASC", title: "Campeão, desvio de 0,4 m", desc: "Membro do subsistema de aerodinâmica e estruturas da equipe Fênix. Participei ativamente na construção do foguete Guará, campeão na categoria de 1 km com recorde brasileiro de 999,6 m, a 0,4 m do alvo." },
       { year: "2024→", tag: "Exos", title: "Cofundador e CTO", desc: "Lidero tráfego pago, dados e integrações com IA na agência. Transformando lançamentos em receita recorrente." },
       { year: "2026", tag: "Vhoe.co", title: "Fundador", desc: "Marca premium de vestuário de aviação. 140K+ seguidores no Instagram via conteúdo de IA. Produto, marca e canal do zero." },
       { year: "2026", tag: "IA", title: "Construindo com IA", desc: "Sites, sistemas de geração de imagem local, LLMs locais, agentes autônomos com Hermes e skills proprietárias para marketing." },
@@ -179,8 +177,8 @@ const pt: Content = {
     ],
   },
   services: {
-    title: "Onde posso <span class='lime'>contribuir</span>",
-    kicker: "o que faço",
+    title: "Minha <span class='lime'>expertise</span>",
+    kicker: "meus pontos fortes",
     items: [
       { title: "Estratégia & Tráfego Pago", desc: "Funis de lançamento e mídia paga com ROI previsível. Google, Meta, TikTok e LinkedIn Ads em escala." },
       { title: "IA Aplicada", desc: "Automações, agentes de IA e arquitetura de sistemas que multiplicam a capacidade das equipes. Do prompt à integração ponta a ponta." },
@@ -194,12 +192,12 @@ const pt: Content = {
     title: "O polímata está de <span class='lime'>volta.</span>",
     lede: "Agora com uma nova interface.",
     paragraphs: [
-      "Por muito tempo, a especialização extrema parecia o melhor caminho. Quanto mais complexo o problema, mais valioso dominar uma única frente. A IA mudou o jogo.",
-      "Hoje o diferencial não está só em saber fazer. Está em conectar ideias, fazer boas perguntas, usar as ferramentas certas e transformar visão em execução. A inteligência continua importando. O que mudou foi o custo da execução.",
-      "Com IA, automações e ferramentas como Claude Code e n8n, uma pessoa com boa visão constrói, testa e lança o que antes exigia equipes inteiras.",
-      "A IA devolve algo que a especialização excessiva tinha tirado: a capacidade de construir em várias frentes e pensar como um polímata moderno. A IA não substitui pessoas. Ela amplia quem sabe usá-la com intenção.",
+      "Por anos, a especialização profunda pareceu a única forma de ser valioso. Quanto mais difícil o problema, mais compensava dominar uma única frente. A IA mudou isso.",
+      "Não trato a IA como enfeite. Uso para operar em várias frentes ao mesmo tempo, engenharia, marketing, produto e dados, e entregar o que antes exigia um time inteiro.",
+      "O diferencial agora não é só saber executar. É conectar ideias, fazer as perguntas certas e transformar visão em algo real, rápido.",
+      "É assim que eu trabalho: como alguém que orquestra muitas habilidades em vez de guardar uma só. A IA não substitui pessoas, ela amplia quem a usa com intenção.",
     ],
-    close: "A vantagem dos próximos anos não é ser o melhor em uma coisa só. É orquestrar várias habilidades para construir coisas extraordinárias.",
+    close: "A vantagem dos próximos anos não é ser o melhor em uma coisa só. É orquestrar várias para construir o que importa.",
   },
   contact: {
     title: "Vamos <span class='lime'>conversar.</span>",

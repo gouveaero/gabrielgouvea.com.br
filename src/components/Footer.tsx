@@ -9,7 +9,6 @@ export default function Footer() {
           <span className="h-1.5 w-1.5 rounded-full bg-lime" />
           <span className="font-mono text-[11px] tracking-[0.18em] text-paper">GABRIEL&nbsp;GOUVEA</span>
         </div>
-        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper-faint">{t.footer.note}</span>
         <span className="font-mono text-[10px] tracking-[0.12em] text-paper-faint">© 2026 {t.footer.rights}</span>
       </div>
     </footer>
