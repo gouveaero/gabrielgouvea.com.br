@@ -1,0 +1,58 @@
+{
+  "client_code": "GG",
+  "client_name": "Gabriel Gouvea (pessoal) + Gouvea Growth",
+  "site_path": ".",
+  "stack": "vite-react-spa",
+  "sites": {
+    "gabrielgouvea.com.br": { "repo": "gouveaero/gabrielgouvea.com.br", "stack": "vite-react-spa", "layer": "src/lib/track.ts + src/components/PixelBootstrap.tsx", "events": ["PageView", "Contact"] },
+    "links.gabrielgouvea.com.br": { "repo": "gouveaero/links", "stack": "static-html", "layer": "gg-tracking.js", "events": ["PageView", "ViewContent", "Contact"] },
+    "slides.gabrielgouvea.com.br": { "repo": "gouveaero/slides-hub", "stack": "static-html", "layer": "gg-tracking.js injected by nginx sub_filter", "events": ["PageView"] },
+    "gouveagrowth.com.br": { "repo": "gouveaero/gouveagrowth.com.br", "stack": "vite-vanilla", "layer": "public/gg-tracking.js", "events": ["PageView", "Contact"] }
+  },
+  "_not_tracked": "slides-sync (WebSocket relay, no pages), n8n, ucj (cliente UCJ/Arko, repo exosmkt)",
+  "deploy": {
+    "platform": "coolify",
+    "vps": "personal",
+    "coolify_url": "https://coolify.gabrielgouvea.com.br",
+    "primary_domain": "gabrielgouvea.com.br",
+    "tracking_endpoint": "/api/track",
+    "sidecar": {
+      "needed": true,
+      "service_name": "gg-tracking",
+      "source": "tracking-sidecar/ in gouveaero/gabrielgouvea.com.br",
+      "subdomain": "track.gabrielgouvea.com.br,track.gouveagrowth.com.br"
+    }
+  },
+  "platforms": {
+    "meta": {
+      "enabled": true,
+      "pixel_id": "1169238995661563",
+      "capi_token_env": "META_CAPI_TOKEN",
+      "test_event_code_env": "META_TEST_EVENT_CODE",
+      "graph_version_env": "META_GRAPH_VERSION",
+      "ldu_us_states": false
+    },
+    "google_ads": {
+      "enabled": true,
+      "conversion_id": "AW-18541724708",
+      "conversion_labels": { "Contact": "" },
+      "_status": "tag base (remarketing) no ar; sem conversion action criada ainda"
+    },
+    "ga4": {
+      "enabled": true,
+      "measurement_id": "G-MCGBF74NZ8",
+      "api_secret_env": "GA4_API_SECRET",
+      "region": "us",
+      "debug_mode": false,
+      "_status": "client-side no ar; Measurement Protocol desligado até criar o api_secret"
+    },
+    "tiktok": { "enabled": false, "pixel_id": "", "access_token_env": "TIKTOK_ACCESS_TOKEN", "test_event_code_env": "TIKTOK_TEST_EVENT_CODE" }
+  },
+  "consent": { "lgpd_mode": "off", "default_state": "granted", "granular": false, "banner": "external" },
+  "events": [
+    { "name": "PageView", "fire_on": "every_route" },
+    { "name": "Contact", "fire_on": "click", "selector": "#contact a (e-mail, LinkedIn, Instagram); mailto:/wa.me em qualquer página" },
+    { "name": "ViewContent", "fire_on": "click", "selector": "links: a.card-link, a.acao, a.li-link, a.btn.secundario" }
+  ],
+  "_skill_metadata": { "skill_version": "tracking-pixels-v1", "installed_at": "2026-10-28", "last_modified_at": "2026-10-28" }
+}

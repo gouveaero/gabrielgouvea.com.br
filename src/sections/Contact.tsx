@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useI18n, RT } from "../i18n/i18n";
 import { useReveal } from "../lib/useReveal";
+import { track } from "../lib/track";
 
 export default function Contact() {
   const { t } = useI18n();
@@ -30,6 +31,7 @@ export default function Contact() {
               href={l.href}
               target={l.href.startsWith("http") ? "_blank" : undefined}
               rel="noreferrer"
+              onClick={() => void track("Contact")}
               data-reveal
               className="group flex items-center justify-between gap-4 bg-ink-2/60 px-5 py-5 backdrop-blur-sm transition-colors duration-300 hover:bg-ink-3 sm:px-7"
             >
@@ -42,6 +44,7 @@ export default function Contact() {
 
         <a
           href={t.contact.links[0].href}
+          onClick={() => void track("Contact")}
           data-reveal
           className="mt-10 inline-flex items-center gap-2.5 rounded-full bg-lime px-7 py-3.5 font-medium text-ink transition-transform duration-300 ease-out-expo hover:-translate-y-0.5"
         >
