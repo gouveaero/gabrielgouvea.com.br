@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0B">
+<title>O chat já marcou o clipe · Guia grátis de clipes do GTA VI · Gabriel Gouvea</title>
+<meta name="description" content="Guia em PDF e ferramenta gratuita que lê o chat da Twitch, acha os momentos em que ele explode e corta clipes verticais do GTA VI. Na live gravada ou ao vivo.">
+<link rel="canonical" href="https://gabrielgouvea.com.br/gta/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gabrielgouvea.com.br/gta/">
+<meta property="og:title" content="O chat já marcou o melhor clipe da live">
+<meta property="og:description" content="Guia grátis + ferramenta que acha os picos do chat da Twitch e corta clipes verticais do GTA VI.">
+<meta property="og:image" content="https://gabrielgouvea.com.br/gta/og.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=satoshi@400,500,700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martian+Mono:wght@300;400;500&display=swap">
+<script src="/gg-tracking.js" defer data-rules='{"a.baixar": "ViewContent", "a.ig": "Contact"}'></script>
+<style>
+:root{--ink:#0A0A0B;--ink2:#101012;--ink3:#16161A;--paper:#ECECE8;--body:#CFCFC9;--dim:#9A9A92;--faint:#8C8C84;--lime:#CDF564;--line:rgba(236,236,232,.12);--line2:rgba(236,236,232,.07);--erro:#FF8A7A}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased;text-size-adjust:100%}
+body{background:var(--ink);color:var(--body);font-family:"Satoshi",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.6;overflow-x:hidden}
+::selection{background:var(--lime);color:var(--ink)}
+a{color:inherit}
+.casca{width:100%;max-width:1120px;margin:0 auto;padding:0 20px}
+@media(min-width:720px){.casca{padding:0 40px}}
+
+/* topo */
+header{border-bottom:1px solid var(--line2)}
+header .casca{display:flex;justify-content:space-between;align-items:center;height:64px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--paper);font-weight:500;letter-spacing:-.01em}
+.marca svg{width:22px;height:22px}
+.olho{font-family:"Martian Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.olho b{color:var(--lime);font-weight:400}
+
+/* hero */
+.hero{padding:56px 0 40px;position:relative}
+.hero::before{content:"";position:absolute;width:620px;height:620px;right:-260px;top:-300px;border-radius:50%;background:radial-gradient(closest-side,rgba(205,245,100,.10),rgba(205,245,100,0));pointer-events:none}
+.hero-grid{display:grid;gap:40px;align-items:center}
+@media(min-width:960px){.hero-grid{grid-template-columns:1.35fr .65fr;gap:56px}.hero{padding:88px 0 64px}}
+@media(max-width:520px){header .olho{display:none}}
+h1,h2{font-family:"Clash Display",system-ui,sans-serif;color:var(--paper);font-weight:600;letter-spacing:-.015em;word-spacing:.08em;text-wrap:balance}
+h1{font-size:clamp(2.5rem,7.4vw,4.1rem);line-height:.98;margin:0 0 22px}
+h1 .l,h2 .l{color:var(--lime)}
+.sub{font-size:clamp(1.05rem,2.2vw,1.22rem);color:var(--body);max-width:40ch}
+.sub strong{color:var(--paper);font-weight:500}
+.chamada{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--lime);color:var(--ink);text-decoration:none;font-weight:700;padding:15px 22px;border-radius:999px;font-size:16px;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+.chamada:hover{transform:translateY(-2px)}
+.chamada svg{width:16px;height:16px}
+.capa-guia{position:relative;max-width:360px;margin:0 auto;width:100%}
+.capa-guia img{width:100%;height:auto;display:block;border-radius:14px;border:1px solid var(--line);box-shadow:0 24px 60px rgba(0,0,0,.55);transform:rotate(-2deg)}
+.capa-guia .selo{position:absolute;right:-6px;bottom:22px;background:var(--ink2);border:1px solid var(--line);border-radius:12px;padding:10px 14px;font-family:"Martian Mono",monospace;font-size:12px;letter-spacing:.02em;color:var(--paper)}
+.capa-guia .selo b{color:var(--lime);font-weight:400}
+
+/* números do teste */
+.numeros{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:8px}
+.numeros div{padding:18px 10px 0 0}
+.numeros b{display:block;font-family:"Clash Display",sans-serif;font-weight:600;font-size:clamp(1.4rem,4.4vw,2.1rem);color:var(--paper);line-height:1}
+.numeros span{display:block;font-size:13px;color:var(--dim);margin-top:6px;line-height:1.35}
+
+/* seções */
+section{padding:48px 0}
+@media(min-width:960px){section{padding:72px 0}}
+h2{font-size:clamp(1.9rem,4.6vw,2.9rem);line-height:1.04;margin:14px 0 18px;max-width:22ch}
+.grafico{margin-top:26px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--ink)}
+.grafico img{width:100%;height:auto;display:block}
+.nota-grafico{font-family:"Satoshi",sans-serif;font-size:14px;letter-spacing:0;color:var(--faint);margin-top:12px;line-height:1.6}
+.itens{display:grid;gap:14px;margin-top:28px}
+@media(min-width:820px){.itens{grid-template-columns:1.2fr 1fr 1fr}}
+.item{border:1px solid var(--line);border-radius:16px;padding:24px;background:var(--ink2)}
+.item .k{font-family:"Martian Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--lime);margin-bottom:14px}
+.item h3{font-family:"Clash Display",sans-serif;font-weight:600;color:var(--paper);font-size:1.32rem;letter-spacing:-.01em;line-height:1.15;margin-bottom:8px}
+.item p{font-size:15.5px;color:var(--dim)}
+.item code{font-family:"Martian Mono",monospace;font-size:12.5px;color:var(--paper);background:var(--ink3);border:1px solid var(--line2);padding:1px 6px;border-radius:6px}
+
+/* formulário */
+#liberar{scroll-margin-top:20px}
+.painel{border:1px solid rgba(205,245,100,.4);border-radius:22px;padding:28px 22px;background:linear-gradient(180deg,rgba(205,245,100,.05),rgba(205,245,100,0) 60%),var(--ink2);max-width:620px}
+@media(min-width:720px){.painel{padding:40px}}
+.painel h2{margin-top:6px;font-size:clamp(1.7rem,4.2vw,2.4rem)}
+.painel .ajuda{color:var(--dim);font-size:15.5px;margin-bottom:22px}
+label{display:block;font-size:14px;color:var(--paper);font-weight:500;margin:16px 0 7px}
+label .opc{color:var(--faint);font-weight:400}
+input{width:100%;font:inherit;font-size:17px;color:var(--paper);background:var(--ink);border:1px solid var(--line);border-radius:12px;padding:14px 15px;outline:none;transition:border-color .2s}
+input::placeholder{color:#86867F}
+input:focus{border-color:var(--lime)}
+input[aria-invalid="true"]{border-color:var(--erro)}
+.erro{color:var(--erro);font-size:14.5px;margin-top:12px}
+button.enviar{margin-top:22px;width:100%;border:0;cursor:pointer;background:var(--lime);color:var(--ink);font:inherit;font-weight:700;font-size:17px;padding:16px;border-radius:999px;transition:transform .25s cubic-bezier(.16,1,.3,1)}
+button.enviar:hover{transform:translateY(-1px)}
+button.enviar:disabled{opacity:.6;cursor:default}
+.privacidade{font-size:13px;color:var(--faint);margin-top:14px;line-height:1.5}
+.privacidade a{color:var(--dim)}
+.liberado h2{margin-bottom:10px}
+.baixar{display:flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-top:12px;background:var(--ink);transition:border-color .2s,transform .25s cubic-bezier(.16,1,.3,1)}
+.baixar:hover{border-color:var(--lime);transform:translateY(-1px)}
+.baixar.forte{background:var(--lime);border-color:var(--lime)}
+.baixar .t{font-family:"Clash Display",sans-serif;font-weight:600;font-size:1.18rem;color:var(--paper);letter-spacing:-.005em;line-height:1.2}
+.baixar.forte .t{color:var(--ink)}
+.baixar .d{font-size:14px;color:var(--dim);margin-top:2px}
+.baixar.forte .d{color:rgba(10,10,11,.7)}
+.baixar svg{flex:none;width:22px;height:22px;color:var(--lime)}
+.baixar.forte svg{color:var(--ink)}
+.proximo{margin-top:20px;font-size:15px;color:var(--dim)}
+.proximo strong{color:var(--paper);font-weight:500}
+
+/* aviso e rodapé */
+.aviso{border-left:2px solid var(--faint);padding:4px 0 4px 18px;color:var(--dim);font-size:15px;max-width:62ch}
+footer{border-top:1px solid var(--line2);padding:36px 0 48px;font-size:14px;color:var(--faint)}
+footer .casca{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:space-between;align-items:center}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--paper)}
+footer .ig{color:var(--paper);font-weight:500}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}.capa-guia img{transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="casca">
+    <a class="marca" href="/"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 25 Q16 -7 27 25" fill="none" stroke="#CDF564" stroke-width="2.6" stroke-linecap="round"/><circle cx="16" cy="9" r="2.5" fill="#CDF564"/></svg>Gabriel Gouvea</a>
+    <span class="olho">Guia grátis · <b>GTA VI</b></span>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="casca hero-grid">
+      <div>
+        <h1>O chat já marcou o <span class="l">melhor clipe</span> da live.</h1>
+        <p class="sub">Uma ferramenta gratuita que lê o chat da Twitch, acha os segundos em que ele explode e corta <strong>clipes verticais prontos para postar</strong>. Na live gravada ou ao vivo, enquanto você dorme.</p>
+        <a class="chamada" href="#liberar">Quero o guia e a ferramenta <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 3v10M3.5 8.5 8 13l4.5-4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="capa-guia">
+        <img src="/gta/capa-guia.jpg" width="720" height="1018" alt="Capa do guia em PDF: O chat já marcou o melhor clipe da live">
+        <p class="selo"><b>PDF</b> · 14 páginas · Windows e Mac</p>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding-top:8px">
+    <div class="casca">
+      <div class="numeros">
+        <div><b>10h46</b><span>de live lidas pelo chat</span></div>
+        <div><b>98 s</b><span>para achar os 5 melhores momentos</span></div>
+        <div><b>5 clipes</b><span>verticais com legenda em 3 min 30 s</span></div>
+      </div>
+      <div class="grafico"><img src="/gta/grafico.svg" width="1200" height="380" alt="Gráfico do chat de uma live de 10 horas comparado com o normal, com 5 picos marcados em verde" loading="lazy"></div>
+      <p class="nota-grafico">Teste real em 18/11/2026, numa live do xQc no GTA RP. Cada barra é o chat comparado com o normal daquele trecho. Os números são os 5 picos que viraram clipe.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="casca">
+      <p class="olho"><b>01</b> o que você recebe</p>
+      <h2>Quando algo absurdo acontece, <span class="l">o chat explode.</span></h2>
+      <p class="sub" style="max-width:56ch">A ferramenta conta quantas pessoas escrevem a cada 10 segundos, compara com o normal daquele trecho e corta o vídeo em volta de cada pico: 20 segundos antes, porque o chat reage depois do lance.</p>
+      <div class="itens">
+        <div class="item"><h3>Guia em PDF, do zero ao primeiro clipe</h3><p>14 páginas em português, para quem nunca abriu um terminal: instalação no Windows e no Mac, os dois modos, ajustes, problemas comuns e como postar.</p></div>
+        <div class="item"><h3>A ferramenta clipar-gta</h3><p><code>vod</code> para a live que já passou, <code>live</code> para a que está no ar. Legenda automática feita no seu computador.</p></div>
+        <div class="item"><h3>Skill do Claude Code que assiste com você</h3><p>Peça em português e o Claude deixa a live rodando, avisa a cada clipe e ajusta a sensibilidade.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="liberar">
+    <div class="casca">
+      <div class="painel">
+        <div id="form-bloco">
+          <p class="olho"><b>02</b> liberar o acesso</p>
+          <h2>Receba o guia e a <span class="l">ferramenta</span></h2>
+          <p class="ajuda">Preencha e os links aparecem aqui na hora.</p>
+          <form id="form" novalidate>
+            <label for="email">Seu e-mail</label>
+            <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="voce@email.com" required aria-describedby="erro">
+            <label for="zap">Seu WhatsApp</label>
+            <input id="zap" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="55 11 91234-5678" required aria-describedby="erro">
+            <label for="nome">Seu nome <span class="opc">(opcional)</span></label>
+            <input id="nome" name="nome" type="text" autocomplete="name" placeholder="Como posso te chamar" maxlength="60">
+            <p class="erro" id="erro" role="alert" hidden></p>
+            <button class="enviar" type="submit">Liberar o guia e a ferramenta</button>
+            <p class="privacidade">Uso seus dados para mandar este material e novidades de IA aplicada. Sem spam. <a href="/privacidade/">Política de privacidade</a>.</p>
+          </form>
+        </div>
+        <div id="liberado" class="liberado" hidden tabindex="-1">
+          <p class="olho"><b>✓</b> liberado</p>
+          <h2>Pronto. <span class="l">Bons clipes.</span></h2>
+          <a class="baixar forte" href="/gta/guia-clipar-gta.pdf" download>
+            <div><p class="t">Baixar o guia</p><p class="d">PDF · 14 páginas · comece por aqui</p></div>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12m-5-5 5 5 5-5M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="baixar" href="/gta/clipar-gta.zip" download>
+            <div><p class="t">Baixar a ferramenta</p><p class="d">clipar-gta.zip · Windows e Mac · grátis</p></div>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12m-5-5 5 5 5-5M5 20h14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="baixar" id="repo" href="https://github.com/gouveaero/clipar-gta" target="_blank" rel="noopener noreferrer" hidden>
+            <div><p class="t">Ver no GitHub</p><p class="d">o código aberto, com as atualizações</p></div>
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="proximo">Próximo passo: abra o guia na <strong>página 4</strong> (Windows) ou na <strong>página 5</strong> (Mac) e instale em uns 15 minutos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="casca">
+      <p class="aviso">O clipe é do streamer: use canais que liberam clipes e coloque o crédito em todo post. Views e dinheiro dependem do clipe e da constância, e ferramenta nenhuma garante isso. Sem vínculo com Twitch, Rockstar Games ou Take-Two.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="casca">
+    <a class="ig" href="https://www.instagram.com/gab.gouvea/" target="_blank" rel="noopener noreferrer">@gab.gouvea no Instagram</a>
+    <span><a href="/">gabrielgouvea.com.br</a> · <a href="/privacidade/">Privacidade</a> · <a href="/termos/">Termos</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* Mesmo envio da página de links (links.gabrielgouvea.com.br): POST text/plain + no-cors
+     para o Apps Script que grava no Google Sheets. Mesmos campos; o reel e a variação vêm
+     do parâmetro ?r= (ex.: ?r=gta1-A) e as UTMs vão junto na origem. */
+  var ENDPOINT = 'https://script.google.com/macros/s/AKfycbzj-CYa1w6RTS-KQCYcAPT3rGZDygEXYz8PtrpMxxaO3Bl7pz4FqXaXVvS2o6rNQonJ/exec';
+  var MOSTRAR_GITHUB = false; /* true quando o repositório gouveaero/clipar-gta ficar público */
+
+  var REELS = {
+    gta1: '18/11 - GTA VI: clipar a live dormindo',
+    gta2: '18/11 - GTA VI: o chat acha o clipe'
+  };
+  var q = new URLSearchParams(location.search);
+  var r = (q.get('r') || '').trim().slice(0, 20);
+  var base = r.split('-')[0].toLowerCase();
+  var reel = (REELS[base] || '18/11 - GTA VI: clipes pelo chat') + ' (' + (r || 'direto') + ')';
+  var UTM = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
+  var utms = {};
+  UTM.forEach(function (k) { var v = q.get(k); if (v) utms[k] = v.slice(0, 80); });
+
+  var VIS_ID = (function () {
+    try {
+      var v = localStorage.getItem('vis_id');
+      if (!v) { v = 'v' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7); localStorage.setItem('vis_id', v); }
+      return v;
+    } catch (e) { return ''; }
+  })();
+  var origem = 'gta' + (VIS_ID ? '#' + VIS_ID : '') +
+    UTM.filter(function (k) { return utms[k]; }).map(function (k) { return '|' + k + '=' + utms[k]; }).join('');
+
+  function envia(dados) {
+    if (!ENDPOINT) return;
+    try {
+      var p = fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(dados),
+        mode: 'no-cors',
+        keepalive: true,
+        credentials: 'omit'
+      });
+      if (p && p.catch) p.catch(function () {});
+    } catch (e) {}
+  }
+
+  var form = document.getElementById('form');
+  var formBloco = document.getElementById('form-bloco');
+  var liberado = document.getElementById('liberado');
+  var erro = document.getElementById('erro');
+  var campoEmail = document.getElementById('email');
+  var campoZap = document.getElementById('zap');
+  var campoNome = document.getElementById('nome');
+  var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+  if (MOSTRAR_GITHUB) document.getElementById('repo').hidden = false;
+
+  function libera(foco) {
+    formBloco.hidden = true;
+    liberado.hidden = false;
+    if (foco) liberado.focus({ preventScroll: true });
+  }
+  try { if (localStorage.getItem('gta_liberado') === '1') libera(false); } catch (e) {}
+
+  function mostraErro(msg, campo) {
+    erro.textContent = msg;
+    erro.hidden = false;
+    campo.setAttribute('aria-invalid', 'true');
+    campo.focus();
+  }
+  [campoEmail, campoZap, campoNome].forEach(function (el) {
+    el.addEventListener('input', function () { el.removeAttribute('aria-invalid'); erro.hidden = true; });
+  });
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var email = (campoEmail.value || '').trim();
+    if (!EMAIL_RE.test(email)) { mostraErro('Confere o e-mail? Parece que falta alguma coisa.', campoEmail); return; }
+    var soDigitos = (campoZap.value || '').replace(/\D/g, '');
+    if (soDigitos.length < 8) { mostraErro('Me passa o WhatsApp com DDD? Ex.: 55 11 91234-5678.', campoZap); return; }
+    var nome = (campoNome.value || '').trim();
+
+    var dados = {
+      email: email,
+      whatsapp: soDigitos,
+      nome: nome,
+      evento: 'assinatura',
+      reel: reel,
+      ferramenta: 'Guia + clipar-gta',
+      link: location.href,
+      origem: origem,
+      data: new Date().toISOString()
+    };
+    UTM.forEach(function (k) { if (utms[k]) dados[k] = utms[k]; });
+    envia(dados);
+    try { localStorage.setItem('lead_email', email); localStorage.setItem('gta_liberado', '1'); } catch (e) {}
+    if (window.ggTrack) {
+      window.ggTrack('Lead', { email: email, phone: soDigitos, content_name: 'guia-clipar-gta', content_category: r || 'direto' });
+    }
+    libera(true);
+  });
+
+  /* cada download registra o clique na mesma planilha (aba de cliques), como na página de links */
+  Array.prototype.forEach.call(document.querySelectorAll('a.baixar'), function (a) {
+    a.addEventListener('click', function () {
+      var em = '';
+      try { em = localStorage.getItem('lead_email') || ''; } catch (e) {}
+      envia({ email: em, evento: 'clique', reel: reel, ferramenta: a.querySelector('.t').textContent, link: a.href, origem: origem, data: new Date().toISOString() });
+    });
+  });
+})();
+</script>
+</body>
+</html>
